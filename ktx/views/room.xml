@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="room_form_view" model="ir.ui.view">
+            <field name="name">room.form.view</field>
+            <field name="model">room</field>
+            <field name="arch" type="xml">
+                <form string="Mới">
+                    <sheet>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="so_giuong"/>
+                            <field name="gia"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="room_tree_view" model="ir.ui.view">
+            <field name="name">room.tree.view</field>
+            <field name="model">room</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="so_giuong"/>
+                    <field name="gia"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="room_code_search_code" model="ir.ui.view">
+            <field name="name">room.code.search.code</field>
+            <field name="model">room</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="so_giuong"/>
+                    <field name="gia"/>
+                </search>
+            </field>
+        </record>
+        <record id="room_room" model="ir.actions.act_window">
+            <field name="name">Loại phòng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">room</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                            (0, 0, {'view_mode': 'tree', 'view_id': ref('room_tree_view')}),
+                            (0, 0, {'view_mode': 'form', 'view_id': ref('room_form_view')})]"/>
+        </record>
+        <menuitem id="menu_room_on_account"
+                  parent="menu_ktx"
+                  name="Loại phòng"
+                  action="room_room"
+                  sequence="3"/>
+    </data>
+</odoo>
