@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="hr_employee_form_view_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.form.view.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <field name="category_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="job_title" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <xpath expr="//field[@name='department_id']" position="attributes">
+                    <attribute name="string">Khoa</attribute>
+                </xpath>
+                <field name="coach_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <page name="public" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </page>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='work_email']" position="attributes">
+                    <attribute name="string">Địa Chỉ</attribute>
+                </xpath>
+                <field name="work_phone" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="mobile_phone" position="before">
+                    <field name="msv"/>
+                </field>
+                <xpath expr="//page[@name='personal_information']/group/group[1]" position="attributes">
+                    <attribute name="string">Thông tin liên lạc</attribute>
+                </xpath>
+                <xpath expr="//page[@name='personal_information']/group/group[2]" position="attributes">
+                    <attribute name="string">Thông tin quê quán</attribute>
+                </xpath>
+                <xpath expr="//page[@name='personal_information']/group/group[3]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='personal_information']/group/group[4]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='personal_information']/group/group[6]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='emergency_contact']" position="attributes">
+                    <attribute name="string">Địa chỉ</attribute>
+                </xpath>
+                <xpath expr="//page[@name='personal_information']/group/group[5]" position="attributes">
+                    <attribute name="string">Thông tin liên hệ gia đình</attribute>
+                </xpath>
+                <xpath expr="//label[@for='km_home_work']" position="attributes">
+                    <attribute name="string">Số km từ nhà tới trường</attribute>
+                </xpath>
+                <field name="address_home_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="private_email" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="phone" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="bank_account_id" position="before">
+                    <field name="sdt"/>
+                    <field name="x_email"/>
+                    <field name="stk"/>
+                </field>
+                 <field name="bank_account_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="parent_id" position="after">
+                    <field name="date_in"/>
+                </field>
+                <field name="emergency_contact" position="before">
+                    <field name="ten_lien_he"/>
+                </field>
+                <field name="passport_id" position="after">
+                    <field name="ngay_cmd"/>
+                </field>
+                 <field name="date_in" position="before">
+                    <field name="gvcn"/>
+                </field>
+                <xpath expr="//page[@name='personal_information']/group/group[7]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='hr_settings']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="attributes">
+                    <attribute name="string">Khoa</attribute>
+                </xpath>
+                <field name="name" position="after">
+                    <field name="name"/>
+                </field>
+            </field>
+        </record>
+        <record id="hr_employee_tree_view_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.tree.view.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                  <field name="company_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='work_email']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Tên sinh viên</attribute>
+                </xpath>
+                <field name="name" position="before">
+                    <field name="msv"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="mobile_phone"/>
+                </field>
+                <field name="mobile_phone" position="before">
+                    <field name="x_email"/>
+                </field>
+                 <xpath expr="//field[@name='department_id']" position="attributes">
+                    <attribute name="string">Khoa</attribute>
+                </xpath>
+                <xpath expr="//field[@name='work_phone']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='job_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="action_ktx" model="ir.actions.act_window">
+            <field name="name">Sinh viên</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+        <menuitem id="menu_ktx"
+                  name="Quản lý KTX"
+                  action="action_ktx"
+                  sequence="10"
+                  groups="base.group_user"/>
+        <menuitem id="menu_ktx_x"
+                  name="Sinh viên"
+                  parent="menu_ktx"
+                  action="action_ktx"
+                  sequence="1"
+                  groups="base.group_user"/>
+
+    </data>
+</odoo>
