@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="dormitory_form_view" model="ir.ui.view">
+            <field name="name">dormitory.form.view</field>
+            <field name="model">dormitory</field>
+            <field name="arch" type="xml">
+                <form string="Mới">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="sdt"/>
+                            <field name="msv"/>
+                            <field name="address"/>
+                            <field name="name_all" widget="many2many_tags"/>
+                            <field name="ngay_vao"/>
+                        </group>
+                        <notebook>
+                            <page string="Thông tin phòng">
+                                <group>
+                                    <group>
+                                        <field name="name_phong"/>
+                                        <field name="code_phong"/>
+                                    </group>
+                                    <group>
+                                        <field name="khu"/>
+                                        <field name="so_giuong"/>
+                                    </group>
+                                </group>
+
+                            </page>
+                            <page string="Thông tin dịch vụ">
+                                <group>
+                                    <group string="Dịch vụ điện">
+                                        <field name="so_dien"/>
+                                        <field name="gia_dien"/>
+                                    </group>
+                                    <group string="Dịch vụ nước">
+                                        <field name="so_nuoc"/>
+                                        <field name="gia_nuoc"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="Dịch vụ gửi xe">
+                                        <field name="ngay_gui"/>
+                                        <field name="so_the"/>
+                                        <field name="bien_so"/>
+                                        <field name="chu_xe"/>
+                                        <field name="loai_xe"/>
+                                        <field name="phi_gui"/>
+                                    </group>
+                                    <group string="Dịch vụ khác">
+                                        <field name="dieu_hoa"/>
+                                        <field name="nong_lanh"/>
+                                    </group>
+                                </group>
+
+                            </page>
+                            <page string="Thông tin đồ dùng">
+                                <group>
+                                    <group string="Thông tin 1">
+                                        <field name="ten_thiet_bi"/>
+                                        <field name="hang"/>
+                                        <field name="trang_thai"/>
+
+                                    </group>
+                                    <group string="Thông tin 2">
+                                        <field name="ten_thiet_bi"/>
+                                        <field name="hang"/>
+                                        <field name="trang_thai"/>
+
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="dormitory_tree_view" model="ir.ui.view">
+            <field name="name">dormitory.tree.view</field>
+            <field name="model">dormitory</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="sdt"/>
+                    <field name="msv"/>
+                    <field name="address"/>
+                    <field name="name_phong"/>
+                    <field name="code_phong"/>
+                </tree>
+            </field>
+        </record>
+        <record id="dormitory_code_search_code" model="ir.ui.view">
+            <field name="name">dormitory.code.search.code</field>
+            <field name="model">dormitory</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="sdt"/>
+                    <field name="msv"/>
+                    <field name="address"/>
+                    <field name="name_phong"/>
+                    <field name="code_phong"/>
+                </search>
+            </field>
+        </record>
+        <record id="action_dormitory_view" model="ir.actions.act_window">
+            <field name="name">Thuê phòng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dormitory</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                            (0, 0, {'view_mode': 'tree', 'view_id': ref('dormitory_tree_view')}),
+                            (0, 0, {'view_mode': 'form', 'view_id': ref('dormitory_form_view')})]"/>
+        </record>
+        <menuitem id="menu_dormitory_on_account"
+                  parent="menu_ktx"
+                  name="Quản lý phòng"
+                  action="action_dormitory_view"
+                  sequence="4"/>
+    </data>
+</odoo>
