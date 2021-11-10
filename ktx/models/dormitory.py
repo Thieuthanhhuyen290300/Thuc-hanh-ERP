@@ -4,19 +4,15 @@ from odoo import _, models, fields, api
 class Dormitory(models.Model):
     _name = "dormitory"
 
-
-    name_all=fields.Many2many("hr.employee", string="Sinh viên cùng phòng")
-    name=fields.Many2one("hr.employee" ,string="Sinh viên đại điện", required=True)
-    sdt=fields.Char("Điện thoại đại diện",related="name.mobile_phone")
-    msv=fields.Char("Mã sinh viên đại điện" , required=True , related="name.msv")
-    address=fields.Char("Địa chỉ sinh viên đại diện" , related="name.work_email")
-    name_phong=fields.Many2one("room","Tên phòng" , required=True)
+    name_all=fields.Many2many("res.partner", string="Sinh viên cùng phòng")
+    name=fields.Many2one("res.partner" ,string="Sinh viên đại điện", required=True)
+    sdt=fields.Char("Điện thoại đại diện")
+    msv=fields.Char("Mã sinh viên đại điện" )
+    address=fields.Char("Địa chỉ sinh viên đại diện" )
+    name_phong=fields.Many2one("product.template","Tên phòng" , required=True)
     code_phong=fields.Char("Mã phòng" , required=True)
-    khu = fields.Selection([
-        ('a', 'Khu A'),
-        ('b', 'Khu B'),
-        ('c', 'Khu C'),] , required=True , default="a", string="Khu")
-    so_giuong=fields.Integer("Số giường")
+    khu = fields.Char("Khu")
+    so_giuong=fields.Integer("Số giường" , default=8)
     so_dien=fields.Integer("Số ban đầu")
     gia_dien=fields.Integer("Giá/KW")
     so_nuoc=fields.Integer("Số nước")
@@ -29,18 +25,15 @@ class Dormitory(models.Model):
     phi_gui=fields.Integer("Phí gửi xe/tháng")
     dieu_hoa=fields.Boolean("Điều hòa")
     nong_lanh=fields.Boolean("Nóng lạnh")
-    ten_thiet_bi=fields.Char("Tên thiết bị")
-    hang = fields.Char("Hãng sản xuất")
-    trang_thai = fields.Selection([
-        ('a', 'Mới'),
-        ('b', 'Đã qua sử dụng'),
-        ('c', 'Hỏng'),], string="Tinh trạng")
     ngay_vao=fields.Date("Ngày vào")
 
-    @api.onchange('name_phong')
-    def get_value(self):
-        self.code_phong = self.name_phong.code
+    @api.onchange('name')
+    def set_value(self):
+        self.sdt = self.name.phone
+        self.msv=self.name.msv
+        self.address=self.name.street
 
     @api.onchange('name_phong')
-    def get_so_giuong(self):
-        self.so_giuong = self.name_phong.so_giuong
+    def set_value_room(self):
+        self.code_phong = self.name_phong.default_code
+        self.khu = self.name_phong.khu

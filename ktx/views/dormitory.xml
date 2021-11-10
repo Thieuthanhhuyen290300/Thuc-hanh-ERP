@@ -13,7 +13,6 @@
                             <field name="msv"/>
                             <field name="address"/>
                             <field name="name_all" widget="many2many_tags"/>
-                            <field name="ngay_vao"/>
                         </group>
                         <notebook>
                             <page string="Thông tin phòng">
@@ -55,22 +54,6 @@
                                     </group>
                                 </group>
 
-                            </page>
-                            <page string="Thông tin đồ dùng">
-                                <group>
-                                    <group string="Thông tin 1">
-                                        <field name="ten_thiet_bi"/>
-                                        <field name="hang"/>
-                                        <field name="trang_thai"/>
-
-                                    </group>
-                                    <group string="Thông tin 2">
-                                        <field name="ten_thiet_bi"/>
-                                        <field name="hang"/>
-                                        <field name="trang_thai"/>
-
-                                    </group>
-                                </group>
                             </page>
                         </notebook>
                     </sheet>
